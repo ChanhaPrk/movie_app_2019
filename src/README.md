@@ -157,6 +157,20 @@ function App(){
         </div>;
 }    
 </code>     
+
+<<    
+class Myname extends React.Component{    
+    render(){    
+        return <div>저의 이름은 <b>{this.props.name}</b>입니다.</div>    
+    }    
+}    
+
+class App extends React.Component{    
+    render(){    
+      return <Myname name={}/>    
+    }    
+}    
+<<    
 #### map function
 #### class - state!! 
 <code>
