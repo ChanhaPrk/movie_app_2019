@@ -157,31 +157,53 @@ function App(){
         </div>;
 }    
 </code>     
-
-<<    
+   
+```
+class version.
 class Myname extends React.Component{    
+    
+    static defaultProps = {
+        name : "none"
+    };
+    
     render(){    
         return <div>저의 이름은 <b>{this.props.name}</b>입니다.</div>    
     }    
 }    
 
+function version.
+const Myname = ({name}) => {
+    return return <div>저의 이름은 <b>{name}</b>입니다.</div> 
+}
+
+static defaultProps = {
+    name : "none"
+}
+//재사용성이 높을 경우 class component, 일회성이 강할 경우 function component을 정의하여 사용한다.
+
+
 class App extends React.Component{    
     render(){    
-      return <Myname name={}/>    
+      return <Myname name={prkchanha}/>    
     }    
 }    
+```
+
+
 <<    
 #### map function
 #### class - state!! 
-<code>
+```
 class App extends React.Component{
     state = {
        count : 0  
     };
     add = () => {
         this.setState({ count : this.state.count +1});
-        //this.state.count = this.state.count+1;과 같은 방식으로 하면 다음과 같은 경고가 발생함! 
-        //warring : Do not mutate state directly. Use setState()  react/no-direct-mutation-state
+        //this.state.count = this.state.count+1;과 같은 방식으로     
+        하면 다음과 같은 경고가 발생함!     
+        //warring : Do not mutate state directly. Use setState()    
+        react/no-direct-mutation-state
         //state을 직접적으로 수정하지 마십시오.
         //상태가 자동으로 refresh되지않으므로 앵간하면 this.setState()을 사용하자.
         //this.setState( { valueNuame : value } ); 
@@ -214,10 +236,37 @@ class App extends React.Component{
         </div>
     }
 }
-</code>    
+``` 
+(???)"functon multi()"방식으로 함수를 정의해서 사용하면 되는데 굳이 "multi = () => {}" Arrow function방식으로    
+멤버 함수를 정의해서 사용해야 하나요???    
+```
+function multi(){
+    console.log( this는 undefined이다. );
+}
+```
+일반 함수 정의 방식으로 멤버함수를 정의한 뒤, 함수 안에서 this키워드를 사용할 경우, this가 class인지, function본인인지 모른다.    
+그러므로 굳이 일반 함수 방식으로 멤버 함수를 정의하여 사용하고자 할 경우 다음과 같은 this처리를 해야한다.    
+```
+class App extends React.Component{
+    constructor( props ){
+        super( props );
+        this.multi = this.multi.bind( this );
+    }
     
+    function multi(){
+        console.log( this는 multi이다. );
+    }
+}
+```
+위와 같은 방식이 번거로우니 Arrow express방식으로 함수를 정의하여 사용하는것을 권장한다.    
+```
+multi = () => {
+    console.log( this는 multi()가 된다.);
+}
+```
 #### class component life cycle    
-클래스 컴포넌트가 처음 생성(페이지로 도착하였을때)되었을때, 표출(render), 파괴(페이지가 변경될때)될때 자동으로 호출되는 함수들은 다음과 같습니다.    
+클래스 컴포넌트가 처음 생성(페이지로 도착하였을때)되었을때, 표출(render), 파괴(페이지가 변경될때)될때    
+자동으로 호출되는 함수들은 다음과 같습니다.    
 생성    
 function componentDidMount()
 표출    
@@ -244,6 +293,29 @@ class ThisIsClassComponent extends React.Component{
         //component가 파괴될따(다른 페이지으로 이동할때) 호출되는 함수입니다.
     }
 }
+#### defualt props data
+```
+class MyName extends React.Component{
+    ...
+    static defaultProps = {
+        name : "none"
+    }
+    ...
+}
+```
+//class 내부에 디폴트 데이터를 정의한다.     
+//React가 자동으로 class 외부로 빼내어 코드를 실행한다.    
+```  
+    function MyName(){
+        ...
+    }
+    
+    static defaultProps = {
+        name : "none"
+    };
+```
+//function component의 defaultProps는 외부에 선언할 수 밖에 없다.    
+
 #### props data Verification!! 
 컴포넌트의 arguments의 데이터가 올바른 type인지 확인합니다.     
 
