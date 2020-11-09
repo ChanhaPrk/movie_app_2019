@@ -1,21 +1,20 @@
-github pages서비스를 이용하여 내 프로젝트를 호스팅 해보자 ^오^  
-
 ## What is a JSX??     
 html문법과 javascript의 중간 단계의 문법이라고 생각하면 편함..!!    
 react을 사용하는데 있어 반드시 알아야할 개념임!    
+
 ##### JSX에서 지켜야할 기본적인 규칙        
 1. 모든 tag는 열었다면, 반드시 닫아야 한다.    
 2. 두개이상의 tag가 있다면 반드시 하나의 tag으로 묶어야 한다.   
-<code>    
+```
 function App(){    
     return <div>    
         <div>AA</div>    
         <div>BB</div>
     </div>    
 }    
-</code>    
+```
 새로운 <div></div>을 사용해서 묶는건 tag을 불필요하게 사용하게 됨으로 <fragment></fragment>tag을 사용합니다.     
-<code>
+```
 import React ,{Fragment} from "react";    
 //fragment 모듈을 import합니다.
 function App(){    
@@ -24,32 +23,32 @@ function App(){
     <div>BB</div>    
  <fragment>    
 }    
-</code>
+```
 3. data types    
 3-1. ~~var : ES6이후부터는 자주 사용되지않은다.~~    
 3-2. const : 한번 선언되면 이후 데이터를 변경 할 수 없습니다.    
 3-3. let : 데이터를 유동적으로 (변경하여)사용할 수 있습니다.    
 4. 조건부 렌더링 하는 여러가지 방법    
 4-1. 삼항연산자    
-<code>
+```
     function App(){    
         const name = 'prkchan';    
         return <fragment>    
-            {name ==== 'kineun' ? 'woman' : 'man'}    
+            {name ==== 'kimeun' ? 'woman' : 'man'}    
         </fragment>    
 }    
-</code>
+```
 4-2. &&연산자
-<code>
+```
     function App(){    
         const name = 'prkchan';    
         return <fragment>    
             {name === 'kimeun' && 'woman' : 'man'}
         </fragment>    
 }    
-</code>
+```
 4-3. Arrow function
-<code>
+```
     function App(){    
         const name = 'prkchan';    
         return <fragment>    
@@ -62,11 +61,11 @@ function App(){
             }    
         </fragment>    
 }    
-</code>    
-5. styling..    
+```   
+5. styling   
 5-1. style    
 tag에 styling하기 위해선 새로운 객체를 만들어 적용합니다.    
-<code>
+```
     function App(){    
         const tagStyle = {    
             backGround : 'black',    
@@ -76,10 +75,10 @@ tag에 styling하기 위해선 새로운 객체를 만들어 적용합니다.
             안녕하세요 리액트!    
         </div>    
 }
-</code>    
+``` 
 css의 항목은 보통 문자 중간에 '-'가 존재하지만, jsx안에서의 항목은 '-'대신 카멜 문법을 적용하여 사용한다.    
 5-2. className    
-<code>    
+```
 import './tagStyle.css';    
     
 function App(){    
@@ -87,13 +86,13 @@ function App(){
         안녕하세요 리액트!
     </div>
 }    
-</code>
+```
 <!--1. packge.json 파일을 수정하자.    -->
 #### React의 가종 좋은 장점은...??    
 component을 만들고, 다양한 프로젝트에 재사용이 가능하다.    
 
-
 #### React component file의 기본형태      
+```
 import React from "react";    
 //import ... from ...;    
     
@@ -105,7 +104,7 @@ function ThisIsFunctionComponent{
 export defult ThisIsFunctionComponent;    
 //export defult component name;    
         
-orther component -> orther component -> index component -> view!!    
+other component -> orther component -> index component -> view!!    
 index.js(component)    
     
 import ThisIsFunctionComponent from "./ThisIsFunctionComponent";    
@@ -116,18 +115,18 @@ import ThisIsFunctionComponent from "./ThisIsFunctionComponent";
 ReactDOM.render( <component />, document.getElementById(""));    
 //view 특정 태크에 생성한 component을 붙힙니다.    
 //하나의 component만 render할 수 있다. (주의)    
-    
-    
+```
+ 
 #### Create React Component    
 1. 두가지 컴포넌트 형태    
 1-1. function component    
-<code>
+```
 function ThisIsFunctionComponent(){    
    return <div> return text...!! </div>;    
 }
-</code>
+```
 1-2. class component    
-<code>
+```
 class ThisIsClassComponent extends React.Component{
 //React.Component객체를 반드시 상속(extends)해야한다..!!
     render(){
@@ -136,12 +135,12 @@ class ThisIsClassComponent extends React.Component{
         return <div> Render text!! </div>
     }
 }
-</code>
+```
 
 #### Props!!!    
 function component      
 class component comunication! 
-<code>
+```
 function Food(props){
 //props에는 넘어온 이름으로 object 형태의 데이터가 넘어오게 된다.
 //function Food({props.faverite})
@@ -156,9 +155,7 @@ function App(){
          <Food faverite="pizza" />
         </div>;
 }    
-</code>     
-   
-```
+
 class version.
 class Myname extends React.Component{    
     
@@ -189,8 +186,6 @@ class App extends React.Component{
 }    
 ```
 
-
-<<    
 #### map function
 #### class - state!! 
 ```
@@ -277,7 +272,7 @@ function componentWillUnmount()
 
 setState()함수가 최초로 render()함수를 호출합니다.    
 render() -> componentDidMount() -> componentDidUpdate() -> componentWillUnmount()    
-    
+```
 class ThisIsClassComponent extends React.Component{     
     componentDidMount(){
         //component가 최초로 생성될때 호출되는 함수입니다.
@@ -293,6 +288,7 @@ class ThisIsClassComponent extends React.Component{
         //component가 파괴될따(다른 페이지으로 이동할때) 호출되는 함수입니다.
     }
 }
+```
 #### defualt props data
 ```
 class MyName extends React.Component{
@@ -325,7 +321,7 @@ class MyName extends React.Component{
 //외부 모듈이기때문에 반드시 import하여 사용해야 합니다.
 3. 데이터의 type과 필수 유/무을 지정합니다.        
 
-<code>
+```
 function ThisIsFunctionComponent( name, age, address, phone, sex ){}{
     ...
 }
@@ -340,9 +336,11 @@ ThisIsFunctionComponent.propTypes = {
     phone : PropTypes.array,
     sex : PropTypes.bool.isRequired
 }
-</code>
+```
 
-#### javascript Arrow function                                              <<<<
+#### javascript Arrow function                                              
+??
+
 #### using fetch api feat.axios     
 //ajax??
 //fetch api basic    
@@ -355,7 +353,7 @@ axios api을 사용하기 위해서 모듈을 다운로드 하여 설치해야�
 그리고 해당 모듈을 component에 import해야한다.    
 import axios from "axios";
 
-<code>
+```
 getData = async () =>{
     const getData = await axios.get("https://yts-proxy.now.sh/list_movies.json");
     try{
@@ -365,14 +363,14 @@ getData = async () =>{
         console.log( error ) ;
     }
 }
-</code>
+```
 axios는 특정서버와 통신한다.    
 그러므로 처리속도가 매우 느리다.(서버에 요청해서 응답을 받아야하니까..)    
 그러나 javascript source code는 서버와 통신 작업이 마무리 되고 나발이고(?) 다음줄의 source code을 처리하게 된다.    
 잠깐...? 서버한테 요청한 걸 아직 응답받지 못했는데??.. 이를 방지하고자 다음 두개의 예약어를 사용하게 된다.    
 async : 해당함수에는 비동기으로 처리되는 source code가 포함되어 있음을 알립니다.    
 await : 실제 서버와 통신하기위한 코드가 처리되기를 기다려줍니다. 다음 source code을 처리하지않고 기다립니다.    
-<code>
+```
     class App extends React.Component{
         state : {
             isLoading : true,
@@ -402,7 +400,7 @@ await : 실제 서버와 통신하기위한 코드가 처리되기를 기다려�
             </div>
         };
     }
-</code>
+```
 #### Route, Router, navigation?????     
 아니 그래서 이게 정확히 뭐하는 놈인데    
 route      (사전적 의미)길, 방법    
@@ -414,7 +412,7 @@ route기능을 사용하기 위해서 모듈을 설치해야합니다.
 //하나의 모듈에 존재하는 두개이상의 기능을 불러오고자할때 다음과 같은 문법을 사용합니다.    
 import {HashRouter, Route} from "react-route-dom";    
 
-<code>
+```
 function App(){
     return <HashRouter>
     <Route path="/" component={}/>
@@ -422,10 +420,10 @@ function App(){
     <Route path="/home/about" component={}/>
     </HashRouter>
 }
-</code>
+```
 HashRouter-Route는 위에서 아래로 접속하고자하는 주소가 있는지 검사하며, 존재할 경우 해당하는 component을 return하게 된다.    
 하지만 요청한 주소의 path을 가지고 있는 모든 component을 return하게 됨으로 exact 예외처리를 해야한다.    
-<code>
+```
 function App(){
     return
     <HashRouter>
@@ -434,10 +432,10 @@ function App(){
         <Route path="/home/list" component={}/>
     </HashRouter>
 }
-</code>         
+```         
         
 텍스트를 클릭하였을때 특정 페이지을 요청하게 하게끔 react에서 Link - to기능을 제공하고있다.   
-<code>
+```
 import {Link} from "react-route-dom";    
     
 function Navigation(){
@@ -462,10 +460,10 @@ function App(){
         </HashRouter>
     </div>
 }
-</code>
+```
 
 링크를 클릭하였을때 다음페이지에 데이터를 넘겨보내고자 합니다.      
-<code>
+```
     <Link
       to={{
         pathname: "/courses",               
@@ -474,18 +472,18 @@ function App(){
         state: { fromDashboard: true }
       }}
     />    
-</code>
+```
 /*
     pathname    : 연결할 경로를 나타내는 문자열입니다.
     search      : 쿼리 매개 변수의 문자열 표현입니다.
-    //hash        : URL에 넣을 해시입니다. # a-hash.           <<지금은 굳이 몰라도 될듯... ?? 
+    //hash      : URL에 넣을 해시입니다. # a-hash.           <<지금은 굳이 몰라도 될듯... ?? 
     state       : 위치에 유지되는 상태입니다.
     
     *pathname,state,search,hash
 */
 
 다음과 같은 방법으로 Link-to을 이용하여 다음 페이지에 데이터를 전달합니다.       
-<code>
+```
 function Movie(id,year,title){
     return 
     <div>
@@ -503,10 +501,10 @@ function Movie(id,year,title){
         }}/>
     </div>
 }
-</code>
+```
 특정 hyper text을 클릭하여 페이지를 요청한다 -> 내용을 구성하는 component에 데이터를 넘긴다. -> 페이지 요청이 있었으므로    
 Router-Route 분긴에 걸림!!!..        
-<code>
+```
     <div>
         <Router>
             <Route path="/" exact={ture}    component={}/>
@@ -514,8 +512,7 @@ Router-Route 분긴에 걸림!!!..
             <Route path="/home/list"        component={}/>
         </Router>    
     </div>
-</code>
-<code>
+
     function Movie({id,title,year}){
         return  <div>
                     <Link to={
@@ -530,8 +527,7 @@ Router-Route 분긴에 걸림!!!..
                     <div>id is {id}</div>
                 </div>
     }
-</code>
-<code>
+    
     class Movie_detail extends React.Component{
         componentDidMount(){
             const {location, history} = this.props;
@@ -552,7 +548,7 @@ Router-Route 분긴에 걸림!!!..
             }
         }
     }
-</code>
+```
 1. Router 분기 만듬 <- 클릭하여 분기를 호출하기 위해선 <Link to={pathName="" state={}}/> tag을 가지고 있어야 함!! 
 2. Router 분기에 걸렸다면, component을 생성함 -> <Link to/>의 state={} 속성에 의해 생성되는 component에 데이터를 넘겨줌!! 
 3. 넘어온 데이터는 this.props안에 다 있음 
